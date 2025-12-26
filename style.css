@@ -1,0 +1,841 @@
+/* style.css */
+/* front chữ */
+
+/* Font cho các tiêu đề lớn */
+/* 1. Tạo khung đen chạy ngang màn hình chứa cả 2 chữ */
+.header-container {
+  display: flex; /* Đưa h1 và h2 lên cùng hàng */
+  justify-content: center; /* Căn giữa cả cụm vào giữa web */
+  align-items: baseline; /* Căn cho chân chữ bằng nhau */
+  gap: 20px; /* Khoảng cách giữa 2 chữ */
+  background: rgba(0, 0, 0, 0.7); /* Nền đen mờ */
+  padding: 10px 0;
+  width: 100%;
+}
+
+/* 2. Định dạng chữ SHOP GIA HUY.NET */
+.shop-name {
+  font-family: "Oswald", sans-serif;
+  font-size: 80px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0; /* Xóa bỏ khoảng cách thừa */
+  text-shadow: 0 0 10px #ffcc00, 0 0 20px #ffcc00; /* Hiệu ứng phát sáng màu vàng */
+  letter-spacing: 2px; /* Giãn cách chữ cho sang hơn */
+}
+
+/* 3. Định dạng chữ shop acc uy tín */
+.testphu {
+  font-family: "Oswald", sans-serif;
+  font-size: 24px; /* Giữ nguyên kích thước nhỏ */
+  font-weight: 700;
+  color: #ffffff; /* Đổi màu trắng cho rõ */
+  margin: 0;
+}
+
+/* Font riêng cho phần giá tiền hoặc thông báo quan trọng */
+.price,
+.alert {
+  font-family: "Oswald", sans-serif; /* Dùng font hệ thống cực mạnh */
+  color: red;
+}
+/* căn giữa , ảnh nền */
+body {
+  background-image: url("https://vmstyle.vn/wp-content/uploads/2025/10/hinh-nen-free-fire-3d-pha-hanh-dong-ngau-tong-do-den.jpg"); /* Đường dẫn ảnh */
+  background-size: cover; /* Ảnh phủ kín màn hình không bị méo */
+  background-position: center; /* Căn giữa ảnh */
+  background-repeat: no-repeat; /* Không lặp lại ảnh */
+  background-attachment: fixed; /* Ảnh đứng yên khi cuộn trang */
+}
+/* thông báo chạy vô cực */
+.marquee-container {
+  width: 100%;
+  overflow: hidden; /* Ẩn phần chữ dư thừa bên ngoài */
+  background: rgba(0, 0, 0, 0.7); /* Nền đen mờ cho giống game */
+  color: #ffcc00; /* Màu vàng đặc trưng FF */
+  padding: 10px 0;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  white-space: nowrap; /* Không cho chữ xuống dòng */
+}
+
+.marquee-text {
+  display: inline-block;
+  padding-left: 100%; /* Bắt đầu chạy từ ngoài màn hình bên phải */
+  animation: marquee 15s linear infinite; /* Chạy vô cực trong 15 giây */
+}
+
+/* Định nghĩa chuyển động */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.top-nav {
+  display: flex;
+  justify-content: space-between; /* Chia đều 3 khối Trái - Giữa - Phải */
+  align-items: center;
+  background: rgba(0, 0, 0, 0.9);
+  padding: 10px 2%;
+  position: sticky; /* Giữ thanh này luôn ở trên cùng khi cuộn trang */
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid #ffcc00;
+}
+
+/* Định dạng chung cho tất cả link trong thanh này */
+.top-nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+/* Căn giữa Menu */
+.nav-center {
+  display: flex;
+  gap: 20px; /* Khoảng cách giữa các mục menu chính giữa */
+}
+
+.nav-center a:hover {
+  color: #ffcc00;
+  text-shadow: 0 0 5px #ffcc00; /* Hiệu ứng phát sáng nhẹ khi di chuột */
+}
+
+/* Khối bên phải */
+.nav-right {
+  display: flex;
+  color: #ffcc00;
+  align-items: center;
+  gap: 15px;
+}
+
+.money {
+  color: #00ff00; /* Số dư màu xanh lá như bạn đã làm */
+  font-weight: bold;
+}
+
+.btn-napthe {
+  background: #ffcc00;
+  color: rgb(0, 0, 0) !important;
+  padding: 5px 12px;
+  border-radius: 4px;
+}
+
+/* Khung bao quanh toàn bộ sản phẩm */
+.product-section {
+  padding: 50px 5%;
+  background: rgba(0, 0, 0, 0.5); /* Nền mờ để nổi bật trên ảnh nền */
+  margin-bottom: 50px; /* Tạo khoảng cách giữa mục Vòng quay và mục Acc Skin súng */
+  padding: 20px 5%;
+}
+
+.section-title {
+  text-align: center;
+  color: #ffcc00; /* Màu vàng đặc trưng shop của bạn */
+  font-family: "Oswald", sans-serif;
+  font-size: 32px;
+  margin-bottom: 30px;
+}
+
+/* Container bao quanh toàn bộ các ô sản phẩm */
+.product-grid {
+  display: grid;
+  /* Lệnh quan trọng: Chia đúng 3 cột đều nhau */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px; /* Khoảng cách giữa các ô */
+  padding: 40px 5%; /* Khoảng cách với mép màn hình */
+  width: 100%;
+  max-width: 1200px; /* Giới hạn độ rộng để không bị quá to */
+  margin: 0 auto; /* Căn giữa toàn bộ khu vực sản phẩm */
+}
+
+/* Định dạng lại từng ô sản phẩm (Card) */
+.product-card {
+  background: rgba(0, 0, 0, 0.9); /* Nền đen đậm để nổi bật */
+  border: 1px solid #ffcc00; /* Viền vàng shop */
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column; /* Ảnh ở trên, chữ ở dưới cho cân đối 3 cột */
+  transition: 0.3s ease; /* Hiệu ứng mượt mà */
+}
+
+/* Hiệu ứng khi di chuột vào ô acc */
+.product-card:hover {
+  transform: scale(1.03); /* Phóng to nhẹ khi chọn */
+  box-shadow: 0 0 15px #ffcc00; /* Phát sáng viền vàng */
+}
+
+/* Chỉnh ảnh sản phẩm */
+.product-img {
+  width: 100%;
+  height: 160px; /* Giảm chiều cao ảnh lại cho vừa mắt */
+}
+
+.product-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Giúp ảnh không bị méo */
+}
+
+/* Chỉnh thông tin bên dưới ảnh */
+.product-info {
+  padding: 15px;
+  text-align: center; /* Căn giữa chữ cho đẹp */
+  color: #fff; /* Chữ trắng */
+}
+
+.product-info h3 {
+  font-size: 16px;
+  margin-bottom: 5px;
+  color: #ffcc00; /* Tên acc màu vàng */
+}
+
+.price {
+  font-size: 20px;
+  font-weight: 700; /* Độ đậm font giá */
+  color: #ff4444; /* Màu đỏ nổi bật */
+  margin-bottom: 10px;
+}
+
+/* Nút MUA NGAY */
+.buy-btn {
+  background: #ffcc00; /* Màu vàng */
+  color: #000;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+/* hiệu ứng neon vòng quay */
+/* Hiệu ứng Vip cho ô vòng quay */
+.product-card {
+  position: relative;
+  border: 1px solid #333; /* Viền mặc định tối */
+  transition: all 0.4s ease; /* Tạo độ mượt khi di chuyển */
+  cursor: pointer;
+}
+
+.product-card:hover {
+  transform: translateY(-10px); /* Ô acc nổi lên trên */
+  border-color: #ffcc00; /* Viền chuyển sang vàng */
+  box-shadow: 0 0 20px rgba(255, 204, 0, 0.6); /* Phát sáng hào quang vàng */
+}
+
+/* Thêm nhãn "VIP" hoặc "HOT" ở góc ảnh */
+.product-img::before {
+  content: "HOT";
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: red;
+  color: white;
+  padding: 2px 10px;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 5px;
+  z-index: 10;
+  box-shadow: 0 0 5px red;
+}
+
+/* Khung chứa nút liên hệ ở góc phải màn hình */
+.contact-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 9999;
+}
+
+.contact-buttons a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 15px;
+  border-radius: 30px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px;
+  transition: 0.3s;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.btn-zalo {
+  background: #0068ff;
+}
+.btn-messenger {
+  background: #0084ff;
+}
+
+.contact-buttons img {
+  width: 25px;
+}
+.contact-buttons i {
+  font-size: 25px;
+}
+
+.contact-buttons a:hover {
+  transform: translateX(-10px); /* Hiệu ứng đẩy sang trái nhẹ khi di chuột */
+  filter: brightness(1.2);
+}
+
+.footer {
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 40px 5%;
+  margin-top: 50px;
+  border-top: 3px solid #ffcc00; /* Viền vàng thương hiệu */
+  text-align: center;
+  font-family: "Oswald", sans-serif;
+}
+
+.footer h3 {
+  color: #ffcc00; /* Tên shop màu vàng */
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.footer p {
+  color: #ccc;
+  font-size: 14px;
+}
+
+.footer-contact {
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.footer-contact a {
+  color: #ffcc00;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.footer-contact a:hover {
+  color: white;
+  text-shadow: 0 0 10px #ffcc00;
+}
+
+.vong-quay-container {
+  text-align: center;
+  margin: 40px auto;
+  position: relative;
+  max-width: 400px;
+  position: relative;
+  pointer-events: none; /* Giúp bạn bấm xuyên qua vùng trống để nhấn được nút Mua Ngay phía sau */
+}
+
+.vong-quay-box {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  margin: 0 auto 20px;
+  pointer-events: auto; /* Giữ cho vòng quay và nút bấm vẫn nhận lệnh chuột */
+}
+
+#vong-quay-img {
+  width: 100%;
+  transition: transform 5s cubic-bezier(0.15, 0, 0.15, 1); /* Hiệu ứng quay chậm dần rồi dừng */
+}
+
+.kim-chi {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 40px;
+  background: url("https://i.imgur.com/39A8v7W.png") no-repeat center; /* Link ảnh mũi tên */
+  background-size: contain;
+  z-index: 10;
+}
+
+.btn-quay {
+  background: #ffcc00; /* Màu vàng shop Huy */
+  border: none;
+  padding: 10px 30px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+  font-family: "Oswald", sans-serif;
+}
+
+.notification-box {
+  position: fixed;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.9);
+  color: #ffcc00; /* Màu vàng shop bạn */
+  padding: 10px 20px;
+  border-left: 4px solid #ffcc00;
+  border-radius: 5px;
+  display: none;
+  z-index: 9999;
+  font-size: 14px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Nền mờ phía sau bảng */
+.modal {
+  display: none; /* Mặc định là ẩn */
+  position: fixed;
+  z-index: 10000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Khung bảng ở giữa */
+.modal-content {
+  background-color: #1a1a1a;
+  margin: 10% auto;
+  padding: 20px;
+  border: 2px solid #ffcc00;
+  width: 350px;
+  border-radius: 10px;
+  position: relative;
+  color: white;
+}
+
+/* Nút đóng (X) */
+.close {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 8px;
+  background: #333;
+  border: 1px solid #444;
+  color: white;
+}
+
+.btn-xacnhan {
+  width: 100%;
+  padding: 10px;
+  background: #ffcc00;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Thêm cái này vào cuối file style.css của Huy */
+.btn-xacnhan {
+  width: 100%;
+  padding: 12px;
+  background: #ffcc00; /* Màu vàng thương hiệu Gia Huy */
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+  color: #000;
+  margin-top: 10px;
+  font-family: "Oswald", sans-serif;
+}
+
+.btn-xacnhan:hover {
+  background: #e6b800; /* Hiệu ứng tối lại khi rê chuột */
+}
+
+.success-popup {
+  position: fixed;
+  top: 20px;
+  right: -400px; /* Mặc định nằm ngoài màn hình */
+  background: #1a1a1a;
+  border-left: 5px solid #00ff00; /* Viền xanh lá */
+  color: white;
+  padding: 15px 25px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  border-radius: 5px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  z-index: 10001;
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.success-popup.show {
+  right: 20px; /* Trượt vào màn hình */
+}
+
+.popup-icon {
+  background: #00ff00;
+  color: black;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.popup-message h4 {
+  color: #00ff00;
+  margin: 0;
+  font-size: 16px;
+  font-family: "Oswald", sans-serif;
+}
+
+.popup-message p {
+  margin: 5px 0 0 0;
+  font-size: 14px;
+  color: #ccc;
+}
+
+/* Bảng kết quả mua Acc - Giao diện chữ nhật ngang */
+#modalKetQua .modal-content {
+  width: 650px; /* Chiều rộng rộng hơn để tạo hình chữ nhật ngang */
+  max-width: 95%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+}
+
+.result-container {
+  display: flex; /* Chia bảng làm 2 cột: Trái (Ảnh) - Phải (Chữ) */
+  gap: 20px;
+  width: 100%;
+  margin-top: 15px;
+  text-align: left;
+}
+
+.result-left {
+  flex: 1; /* Cột ảnh chiếm 1 phần */
+}
+
+.result-right {
+  flex: 1.2; /* Cột thông tin chiếm phần nhiều hơn */
+  background: #222;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px dashed #ffcc00;
+}
+
+.result-right p {
+  margin: 8px 0;
+  font-size: 15px;
+  border-bottom: 1px solid #333;
+  padding-bottom: 5px;
+}
+
+.result-right b {
+  color: #ffcc00;
+  display: inline-block;
+  width: 100px;
+}
+
+#anhAccMua {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid #ffcc00;
+}
+/* Hiệu ứng cho Popup thông báo nạp tiền */
+.success-popup {
+  position: fixed;
+  top: -100px; /* Ban đầu nằm ngoài màn hình */
+  right: 20px;
+  background: #1a1a1a;
+  border-left: 5px solid #00ff00;
+  padding: 15px 25px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  transition: all 0.5s ease; /* Hiệu ứng trượt */
+  border-radius: 4px;
+}
+
+.success-popup.show {
+  top: 20px; /* Trượt xuống khi nạp thành công */
+}
+
+.popup-icon {
+  background: #00ff00;
+  color: black;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+
+.popup-message h4 {
+  margin: 0;
+  color: #00ff00;
+  font-size: 14px;
+}
+
+.popup-message p {
+  margin: 0;
+  color: white;
+  font-size: 13px;
+}
+
+.modal-thong-bao {
+  display: none;
+  position: fixed;
+  z-index: 10000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(5px);
+}
+
+.thong-bao-content {
+  position: relative;
+  background: #111;
+  border: 2px solid #ffcc00;
+  width: 320px;
+  padding: 30px;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 15px;
+  box-shadow: 0 0 30px #ffcc00;
+  animation: zoomIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.qua-highlight {
+  font-size: 24px;
+  font-weight: bold;
+  color: #00ff00;
+  margin: 20px 0;
+  text-shadow: 0 0 10px #00ff00;
+}
+
+.btn-nhan-qua {
+  background: linear-gradient(to bottom, #ffcc00, #ff9900);
+  border: none;
+  padding: 10px 30px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-nhan-qua:hover {
+  transform: scale(1.1);
+}
+
+@keyframes zoomIn {
+  from {
+    transform: translate(-50%, -50%) scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+
+.toast-mini {
+  position: fixed;
+  top: 20px;
+  right: -300px; /* Ban đầu ẩn bên ngoài */
+  background: rgba(20, 20, 20, 0.95);
+  border-left: 4px solid #ffcc00;
+  padding: 15px 25px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  z-index: 999999;
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.toast-mini.show {
+  right: 20px; /* Trượt vào màn hình */
+}
+
+.toast-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.toast-mini .icon {
+  font-size: 24px;
+  animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+#soDuKimCuong {
+  text-shadow: 0 0 5px #00e5ff;
+  animation: pulseKC 1.5s infinite;
+}
+
+@keyframes pulseKC {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+/* Thông báo Toast ở góc phải */
+.toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10001;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.toast-item {
+  min-width: 280px;
+  padding: 15px 20px;
+  border-radius: 8px;
+  background: rgba(20, 20, 20, 0.95);
+  color: white;
+  border-left: 5px solid #ffcc00;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  animation: slideIn 0.4s ease forwards, fadeOut 0.4s ease 3.5s forwards;
+}
+
+.toast-item.success {
+  border-left-color: #00ff00;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(120%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  to {
+    transform: translateX(120%);
+    opacity: 0;
+  }
+}
+
+/* CSS cho form Đăng nhập/Đăng ký */
+.auth-form input {
+  width: 90%;
+  padding: 10px;
+  margin: 10px 0;
+  background: #222;
+  border: 1px solid #444;
+  color: #fff;
+  border-radius: 5px;
+}
+.btn-auth {
+  width: 100%;
+  padding: 12px;
+  background: #ffcc00;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+}
+.nav-hidden {
+  display: none;
+}
+
+/* Hiệu ứng khung rực lửa tổng thể */
+.fire-border {
+  border: 2px solid #ff4500 !important;
+  background: rgba(0, 0, 0, 0.95) !important;
+  position: relative;
+  /* Đa lớp bóng đổ để tạo độ dày cho lửa */
+  box-shadow: 0 0 15px #ff4500, 0 0 30px #ff8c00,
+    inset 0 0 20px rgba(255, 69, 0, 0.6);
+  animation: fire-flicker 1.2s infinite alternate ease-in-out;
+}
+
+/* Chuyển động lửa bập bùng */
+@keyframes fire-flicker {
+  0% {
+    box-shadow: 0 0 15px #ff4500, 0 0 30px #ff8c00;
+    transform: scale(1);
+  }
+  100% {
+    box-shadow: 0 0 25px #ff0000, 0 0 45px #ffae00;
+    transform: scale(1.01);
+  }
+}
+
+/* Fix triệt để lỗi tràn khung cho mọi bảng */
+.modal-content {
+  box-sizing: border-box !important;
+  overflow: hidden; /* Ngăn chặn nội dung con tràn ra */
+}
+
+.modal-content input,
+.modal-content select,
+.modal-content textarea {
+  width: 100% !important;
+  box-sizing: border-box !important; /* Quan trọng nhất để chống tràn */
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #444;
+  background: #111;
+  color: #fff;
+}
+
+/* Hiệu ứng tiêu đề rực cháy */
+.modal-content h2 {
+  text-shadow: 0 0 10px #ff4500, 0 0 20px #ff0000;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}

@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <title>SHOP Boongji</title>
+    <style>
+      /* CSS GỐC CỦA BẠN */
+      .notification-box {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        background: rgba(0, 0, 0, 0.8);
+        color: #fff;
+        padding: 10px 15px;
+        border-radius: 5px;
+        border-left: 4px solid #ffcc00;
+        z-index: 9999;
+        display: none;
+        font-size: 14px;
+      }
+      .toast-mini {
+        position: fixed;
+        top: 20px;
+        right: -300px;
+        background: #1a1a1a;
+        border-left: 5px solid #ffcc00;
+        padding: 15px;
+        border-radius: 5px;
+        z-index: 10002;
+        transition: right 0.5s ease;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+      }
+      .toast-mini.show {
+        right: 20px;
+      }
+      .success-popup {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.5);
+        background: #111;
+        border: 2px solid #00ff00;
+        padding: 20px;
+        z-index: 10003;
+        border-radius: 10px;
+        text-align: center;
+        visibility: hidden;
+        opacity: 0;
+        transition: 0.3s;
+      }
+      .success-popup.show {
+        visibility: visible;
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.85);
+        overflow-y: auto;
+      }
+      .modal-content {
+        margin: 5% auto;
+        background: #111;
+        position: relative;
+        border-radius: 10px;
+        padding: 20px;
+      }
+
+      /* CSS BỔ SUNG CHO FORM ĐĂNG NHẬP */
+      .auth-input {
+        width: 90%;
+        padding: 10px;
+        margin: 10px 0;
+        background: #222;
+        border: 1px solid #ffcc00;
+        color: #fff;
+        border-radius: 5px;
+      }
+      .auth-btn {
+        width: 100%;
+        padding: 10px;
+        background: #ffcc00;
+        color: #000;
+        border: none;
+        font-weight: bold;
+        cursor: pointer;
+        border-radius: 5px;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="top-nav">
+      <div class="nav-left" id="user-nav">
+        <a href="javascript:void(0)" onclick="moModalAuth('dangky')">Đăng ký</a>
+        |
+        <a href="javascript:void(0)" onclick="moModalAuth('dangnhap')"
+          >Đăng nhập</a
+        >
+      </div>
+      <div class="nav-center">
+        <a href="#">TRANG CHỦ</a><a href="#">RÚT KIM CƯƠNG</a
+        ><a href="#">DỊCH VỤ</a><a href="#">MUA ACC</a>
+      </div>
+      <div class="nav-right" id="money-nav" style="display: none">
+        <span>Chào, <b id="display-name">HuyGiaFF</b></span>
+        <span style="color: #00e5ff; margin-right: 10px"
+          >💎 <b id="soDuKimCuong">0</b> KC</span
+        >
+        <span class="money" id="soDuHienTai">500.000đ</span>
+        <button class="btn-napthe" onclick="moBangNapThe()">NẠP THẺ</button>
+      </div>
+    </div>
+
+    <div class="marquee-container">
+      <div class="marquee-text">
+        🔥 THÔNG BÁO: CHÀO MỪNG BẠN ĐẾN VỚI SHOP GIA HUY FF - UY TÍN - CHẤT
+        LƯỢNG - HÀNG ĐẦU! 🔥
+      </div>
+    </div>
+
+    <div class="header-container">
+      <h1 class="shop-name">SHOP BOONGJI FF.NET</h1>
+      <h2 class="testphu">UY TÍN - CHẤT LƯỢNG - THƯƠNG HIỆU</h2>
+    </div>
+
+    <div class="product-section">
+      <h2 class="section-title">DANH SÁCH VÒNG QUAY SIÊU VIP</h2>
+      <div class="product-grid">
+        <div class="product-card">
+          <div class="product-img">
+            <img
+              src="https://cdn3.upanh.info/upload/server-sw3/images/Thumb(10).webp"
+            />
+          </div>
+          <div class="product-info">
+            <h3>VÒNG QUAY GIÁNG SINH</h3>
+            <p>Đã chơi: 6046</p>
+            <div class="price">9.000đ</div>
+            <button
+              class="buy-btn"
+              onclick="moXacNhan('vongquay', 9000, 'VÒNG QUAY GIÁNG SINH', '', '', '', 'https://cdn3.upanh.info/upload/server-sw3/images/Vong%20quay(35).png')"
+            >
+              MUA NGAY
+            </button>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-img">
+            <img
+              src="https://cdn3.upanh.info/upload/server-sw3/images/vongquaythanhlong.webp"
+            />
+          </div>
+          <div class="product-info">
+            <h3>VÒNG QUAY M60 THANH LONG</h3>
+            <p>Đã chơi: 1698</p>
+            <div class="price">19.000đ</div>
+            <button
+              class="buy-btn"
+              onclick="moXacNhan('vongquay', 19000, 'VÒNG QUAY M60 THANH LONG', '', '', '', 'https://cdn3.upanh.info/upload/server-sw3/images/Vong%20quay(33).png')"
+            >
+              MUA NGAY
+            </button>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-img">
+            <img
+              src="https://cdn3.upanh.info/upload/server-sw3/images/Thumb(9).webp"
+            />
+          </div>
+          <div class="product-info">
+            <h3>VÒNG QUAY XM8 THẦN SẤM</h3>
+            <p>Đã chơi: 2278</p>
+            <div class="price">19.000đ</div>
+            <button
+              class="buy-btn"
+              onclick="moXacNhan('vongquay', 19000, 'VÒNG QUAY XM8 THẦN SẤM', '', '', '', 'https://cdn3.upanh.info/upload/server-sw3/images/Vong%20quay(34).png')"
+            >
+              MUA NGAY
+            </button>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-img">
+            <img
+              src="https://cdn3.upanh.info/upload/server-sw3/images/Thumb(8).webp"
+            />
+          </div>
+          <div class="product-info">
+            <h3>VÒNG QUAY LONG TỘC</h3>
+            <p>Đã chơi: 4582</p>
+            <div class="price">10.000đ</div>
+            <button
+              class="buy-btn"
+              onclick="moXacNhan('vongquay', 10000, 'VÒNG QUAY LONG TỘC', '', '', '', 'https://cdn3.upanh.info/upload/server-sw3/images/Vong%20quay(32).png')"
+            >
+              MUA NGAY
+            </button>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-img">
+            <img
+              src="https://cdn3.upanh.info/upload/server-sw3/images/Thumb(9).png"
+            />
+          </div>
+          <div class="product-info">
+            <h3>VÒNG QUAY KIM CƯƠNG FREE FIRE</h3>
+            <p>Đã chơi: 57038</p>
+            <div class="price">25.000đ</div>
+            <button
+              class="buy-btn"
+              onclick="moXacNhan('vongquay', 25000, 'VÒNG QUAY KIM CƯƠNG FREE FIRE', '', '', '', 'https://cdn3.upanh.info/upload/server-sw3/images/Vong%20quay(18).png')"
+            >
+              MUA NGAY
+            </button>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-img">
+            <img
+              src="https://shopcenaff.com/thumbs/250x150x1/upload/product/667608555284_online_img.gif"
+            />
+          </div>
+          <div class="product-info">
+            <h3>VÒNG QUAY PRIME</h3>
+            <p>Đã chơi: 5478</p>
+            <div class="price">9.000đ</div>
+            <button
+              class="buy-btn"
+              onclick="moXacNhan('vongquay', 9000, 'VÒNG QUAY PRIME', '', '', '', 'https://shopcenaff.com/upload/product/806158993488_online_img.png')"
+            >
+              MUA NGAY
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-section">
+      <h2 class="section-title">DANH SÁCH ACC RANDOM VIP</h2>
+      <div class="product-grid">
+        <div class="product-card">
+          <div class="product-img">
+            <img
+              src="https://shopcenaff.com/thumbs/250x150x1/upload/product/768957973700_online_img.gif"
+            />
+          </div>
+          <div class="product-info">
+            <h3>Gói Random VIP 1</h3>
+            <p>Trúng Acc cực phẩm</p>
+            <div class="price">150.000đ</div>
+            <button class="buy-btn" onclick="muaAccRandom(150000)">
+              MUA NGAY
+            </button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img">
+            <img
+              src="https://shopcenaff.com/thumbs/250x150x1/upload/product/768957973700_online_img.gif"
+            />
+          </div>
+          <div class="product-info">
+            <h3>Gói Random VIP 2</h3>
+            <p>Trúng Acc cực phẩm</p>
+            <div class="price">200.000đ</div>
+            <button class="buy-btn" onclick="muaAccRandom(200000)">
+              MUA NGAY
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="modalAuth" class="modal">
+      <div
+        class="modal-content"
+        style="width: 350px; text-align: center; border: 2px solid #ffcc00"
+      >
+        <h3 id="auth-title" style="color: #ffcc00">ĐĂNG NHẬP</h3>
+        <div style="padding: 10px">
+          <input
+            type="text"
+            id="auth-user"
+            class="auth-input"
+            placeholder="Tên tài khoản..."
+          />
+          <input
+            type="password"
+            id="auth-pass"
+            class="auth-input"
+            placeholder="Mật khẩu..."
+          />
+          <button class="auth-btn" onclick="thucHienAuth()">XÁC NHẬN</button>
+          <p
+            id="auth-switch"
+            style="
+              color: #aaa;
+              font-size: 13px;
+              margin-top: 15px;
+              cursor: pointer;
+            "
+            onclick="chuyenCheDoAuth()"
+          >
+            Chưa có tài khoản? Đăng ký ngay
+          </p>
+          <button
+            onclick="dongModalAuth()"
+            style="
+              background: none;
+              border: none;
+              color: #555;
+              cursor: pointer;
+              margin-top: 10px;
+            "
+          >
+            Hủy bỏ
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="modalXacNhan" class="modal">
+      <div
+        class="modal-content"
+        style="width: 350px; text-align: center; border: 2px solid #ffcc00"
+      >
+        <h3 style="color: #ffcc00">XÁC NHẬN GIAO DỊCH</h3>
+        <p id="msg-xacnhan" style="color: white; margin: 20px 0"></p>
+        <div style="display: flex; gap: 10px">
+          <button
+            id="btn-dong-y"
+            style="
+              flex: 1;
+              padding: 10px;
+              background: #00ff00;
+              border: none;
+              font-weight: bold;
+              cursor: pointer;
+              border-radius: 5px;
+            "
+          >
+            MUA LUÔN
+          </button>
+          <button
+            onclick="dongModalXacNhan()"
+            style="
+              flex: 1;
+              padding: 10px;
+              background: #555;
+              border: none;
+              color: white;
+              cursor: pointer;
+              border-radius: 5px;
+            "
+          >
+            HỦY
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="modalVongQuay" class="modal">
+      <div
+        class="modal-content"
+        style="
+          width: 900px;
+          max-width: 95%;
+          background: #111;
+          border: 2px solid #ffcc00;
+          display: flex;
+          flex-wrap: wrap;
+          padding: 0;
+        "
+      >
+        <div
+          style="
+            flex: 1.2;
+            padding: 20px;
+            border-right: 1px solid #333;
+            text-align: center;
+          "
+        >
+          <h3 id="vq-ten" style="color: #ffcc00"></h3>
+          <div
+            style="
+              position: relative;
+              width: 250px;
+              height: 250px;
+              margin: 20px auto;
+            "
+          >
+            <div
+              style="
+                position: absolute;
+                top: -10px;
+                left: 50%;
+                transform: translateX(-50%);
+                z-index: 10;
+                color: #ff0000;
+                font-size: 30px;
+              "
+            >
+              ▼
+            </div>
+            <img
+              id="vong-quay-img"
+              src=""
+              style="
+                width: 100%;
+                border-radius: 50%;
+                transition: transform 4s cubic-bezier(0.15, 0, 0.15, 1);
+              "
+            />
+            <button
+              onclick="batDauQuay()"
+              style="
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 60px;
+                height: 60px;
+                border-radius: 50%;
+                background: #ffcc00;
+                border: 3px solid #fff;
+                font-weight: bold;
+                cursor: pointer;
+              "
+            >
+              QUAY
+            </button>
+          </div>
+          <p>Giá mỗi lượt: <b id="vq-gia" style="color: #00ff00"></b></p>
+        </div>
+        <div style="flex: 1; padding: 20px; background: #1a1a1a">
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+            "
+          >
+            <h4 style="color: #ffcc00; margin: 0">LỊCH SỬ NHẬN QUÀ</h4>
+            <span
+              onclick="dongVongQuay()"
+              style="color: #fff; font-size: 30px; cursor: pointer"
+              >&times;</span
+            >
+          </div>
+          <div
+            id="lich-su-quay"
+            style="
+              height: 250px;
+              overflow-y: auto;
+              color: #ddd;
+              margin-top: 15px;
+            "
+          >
+            <i>Chưa có lượt quay nào...</i>
+          </div>
+          <div
+            style="
+              margin-top: 15px;
+              background: #222;
+              padding: 10px;
+              border-radius: 5px;
+            "
+          >
+            Số dư: <b id="so-du-vq" style="color: #ffcc00"></b>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="modalKetQua" class="modal">
+      <div
+        class="modal-content"
+        style="
+          width: 650px;
+          max-width: 95%;
+          border: 2px solid #00ff00;
+          padding: 0;
+        "
+      >
+        <div
+          style="
+            background: #00ff00;
+            color: black;
+            padding: 10px;
+            font-weight: bold;
+            text-align: center;
+          "
+        >
+          MUA TÀI KHOẢN THÀNH CÔNG
+        </div>
+        <div
+          style="
+            display: flex;
+            flex-wrap: wrap;
+            background: #1a1a1a;
+            padding: 20px;
+            gap: 20px;
+            color: white;
+          "
+        >
+          <div style="flex: 1">
+            <img id="res-anh" src="" style="width: 100%; border-radius: 5px" />
+          </div>
+          <div style="flex: 1">
+            <p><b>Tên Acc:</b> <span id="res-ten"></span></p>
+            <p><b>ID Game:</b> <span id="res-id"></span></p>
+            <p>
+              <b>Cấp bậc Prime:</b>
+              <span id="res-prime" style="color: #ffcc00"></span>
+            </p>
+            <p>
+              <b>Cấp bậc Acc:</b>
+              <span id="res-rank" style="color: #00ff00"></span>
+            </p>
+            <p>
+              <b>Tài khoản:</b>
+              <span id="res-gmail" style="color: #5ecfff"></span>
+            </p>
+            <p>
+              <b>Mật khẩu:</b>
+              <span id="res-pass" style="color: #ff4d4d"></span>
+            </p>
+            <button
+              onclick="dongModalKetQua()"
+              style="
+                width: 100%;
+                margin-top: 15px;
+                padding: 10px;
+                background: #00ff00;
+                border: none;
+                font-weight: bold;
+                cursor: pointer;
+              "
+            >
+              ĐÃ HIỂU
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="modalNapThe" class="modal">
+      <div class="modal-content">
+        <h2 style="color: #ffcc00">NẠP THẺ CÀO</h2>
+        <div style="margin: 15px 0; text-align: left">
+          <label>Loại thẻ:</label>
+          <select
+            id="loaiThe"
+            style="
+              width: 100%;
+              padding: 10px;
+              margin-top: 5px;
+              border-radius: 5px;
+            "
+          >
+            <option value="Viettel">Viettel</option>
+            <option value="Mobifone">Mobifone</option>
+            <option value="Vinaphone">Vinaphone</option>
+            <option value="Zing">Zing</option>
+          </select>
+
+          <label style="display: block; margin-top: 15px">Mệnh giá:</label>
+          <select
+            id="menhGia"
+            style="
+              width: 100%;
+              padding: 10px;
+              margin-top: 5px;
+              border-radius: 5px;
+            "
+          >
+            <option value="10000">10.000đ</option>
+            <option value="20000">20.000đ</option>
+            <option value="50000">50.000đ</option>
+            <option value="100000">100.000đ</option>
+            <option value="200000">200.000đ</option>
+            <option value="500000">500.000đ</option>
+          </select>
+
+          <label style="display: block; margin-top: 15px">Mã thẻ:</label>
+          <input
+            type="text"
+            id="maThe"
+            placeholder="Nhập mã thẻ..."
+            style="
+              width: 100%;
+              padding: 10px;
+              margin-top: 5px;
+              border-radius: 5px;
+            "
+          />
+
+          <label style="display: block; margin-top: 15px">Seri:</label>
+          <input
+            type="text"
+            id="seri"
+            placeholder="Nhập số seri..."
+            style="
+              width: 100%;
+              padding: 10px;
+              margin-top: 5px;
+              border-radius: 5px;
+            "
+          />
+        </div>
+        <button onclick="guiThe()" class="btn-buy" style="width: 100%">
+          NẠP NGAY
+        </button>
+        <button
+          onclick="dongModal()"
+          style="
+            background: none;
+            border: none;
+            color: #aaa;
+            margin-top: 10px;
+            cursor: pointer;
+          "
+        >
+          Đóng
+        </button>
+      </div>
+    </div>
+    <div id="notification-box" class="notification-box"></div>
+    <div id="toast-thong-bao" class="toast-mini">
+      <div style="color: #ffcc00; font-weight: bold">🎁 TRÚNG THƯỞNG!</div>
+      <div id="toast-qua-text" style="color: #fff; font-size: 13px"></div>
+    </div>
+    <div id="success-popup" class="success-popup">
+      <div style="font-size: 40px; color: #00ff00">✔</div>
+      <h4 style="color: #fff">THÀNH CÔNG!</h4>
+      <p id="popup-text" style="color: #ccc"></p>
+    </div>
+
+    <div class="contact-buttons">
+      <a href="https://zalo.me/0356486019" class="btn-zalo" target="_blank"
+        ><span>Chat Zalo</span></a
+      >
+    </div>
+
+    <script>
+      const users = [
+        "Bác Gấu",
+        "Thanh Văn",
+        "C4",
+        "Admin",
+        "Linh_Cute",
+        "Trạng VIP7",
+      ];
+      const rewards = [
+        "10.000 Kim Cương",
+        "Acc Skin Súng VIP",
+        "999 Kim Cương",
+        "Acc Free Fire VIP 299k",
+        "Acc Free Fire VIP 399k",
+      ];
+
+      function showNotification() {
+        const box = document.getElementById("notification-box");
+        const user = users[Math.floor(Math.random() * users.length)];
+        const reward = rewards[Math.floor(Math.random() * rewards.length)];
+
+        box.innerHTML = `Người chơi <b>${user}</b> vừa trúng <b>${reward}</b>`;
+        box.style.display = "block";
+        box.style.bottom = "100px"; // Nằm trên nút Messenger
+
+        setTimeout(() => {
+          box.style.display = "none";
+        }, 4000); // Hiện 3 giây rồi tắt
+      }
+
+      // Cứ 5 giây hiện thông báo một lần
+      setInterval(showNotification, 5000);
+    </script>
+
+    <script>
+      // 1. CẤU HÌNH VÒNG QUAY
+      const cấuHìnhVòngQuay = {
+        "VÒNG QUAY GIÁNG SINH": [
+          { ten: "Quà Tặng Giáng Sinh", goc: 0, tyLe: 84 },
+          { ten: "99 Kim Cương", goc: 45, tyLe: 10 },
+          { ten: "299 Kim Cương", goc: 90, tyLe: 1 },
+          { ten: "599 Kim Cương", goc: 135, tyLe: 1 },
+          { ten: "999 Kim Cương", goc: 180, tyLe: 1 },
+          { ten: "2.999 Kim Cương", goc: 225, tyLe: 1 },
+          { ten: "4.499 Kim Cương", goc: 270, tyLe: 1 },
+          { ten: "9.999 Kim Cương", goc: 315, tyLe: 1 },
+        ],
+        "VÒNG QUAY M60 THANH LONG": [
+          { ten: "Mảnh Ghép Thanh Long", goc: 0, tyLe: 44 },
+          { ten: "49 Kim Cương", goc: 45, tyLe: 60 },
+          { ten: "399 Kim Cương ", goc: 90, tyLe: 1 },
+          { ten: "1.999 Kim Cương", goc: 135, tyLe: 1 },
+          { ten: "6.999 Kim Cương", goc: 180, tyLe: 1 },
+          { ten: "9.999 Kim Cương", goc: 225, tyLe: 1 },
+          { ten: "14.999 Kim Cương", goc: 270, tyLe: 1 },
+          { ten: "19.999 Kim Cương", goc: 315, tyLe: 1 },
+        ],
+        "VÒNG QUAY XM8 THẦN SẤM": [
+          { ten: "Mảnh Ghép XM8 THẦN SẤM", goc: 0, tyLe: 44 },
+          { ten: "99 Kim Cương", goc: 45, tyLe: 60 },
+          { ten: "399 Kim Cương ", goc: 90, tyLe: 1 },
+          { ten: "1.999 Kim Cương", goc: 135, tyLe: 1 },
+          { ten: "6.999 Kim Cương", goc: 180, tyLe: 1 },
+          { ten: "9.999 Kim Cương", goc: 225, tyLe: 1 },
+          { ten: "14.999 Kim Cương", goc: 270, tyLe: 1 },
+          { ten: "19.999 Kim Cương", goc: 315, tyLe: 1 },
+        ],
+        "VÒNG QUAY LONG TỘC": [
+          { ten: "Mảnh Ghép LONG TỘC", goc: 0, tyLe: 61 },
+          { ten: "500 Kim Cương", goc: 45, tyLe: 2 },
+          { ten: "20.000 Kim Cương ", goc: 90, tyLe: 1 },
+          { ten: "50 Kim Cương", goc: 135, tyLe: 30 },
+          { ten: "2.000 Kim Cương", goc: 180, tyLe: 1 },
+          { ten: "200 Kim Cương", goc: 225, tyLe: 3 },
+          { ten: "15.000 Kim Cương", goc: 270, tyLe: 1 },
+          { ten: "30.000 Kim Cương", goc: 315, tyLe: 1 },
+        ],
+        "VÒNG QUAY KIM CƯƠNG FREE FIRE": [
+          { ten: "9.999 Kim Cương", goc: 0, tyLe: 1 },
+          { ten: "20 Kim Cương", goc: 45, tyLe: 60 },
+          { ten: "7.000 Kim Cương ", goc: 90, tyLe: 1 },
+          { ten: "110 Kim Cương", goc: 135, tyLe: 34 },
+          { ten: "6.666 Kim Cương", goc: 180, tyLe: 1 },
+          { ten: "688 Kim Cương", goc: 225, tyLe: 1 },
+          { ten: "3.000 Kim Cương", goc: 270, tyLe: 1 },
+          { ten: "5.000 Kim Cương", goc: 315, tyLe: 1 },
+        ],
+        "VÒNG QUAY PRIME": [
+          { ten: "Kim Cương VIP", goc: 0, tyLe: 93 },
+          { ten: "999 Kim Cương", goc: 45, tyLe: 1 },
+          { ten: "66.666 Kim Cương ", goc: 90, tyLe: 1 },
+          { ten: "4.444 Kim Cương", goc: 135, tyLe: 1 },
+          { ten: "12.345 Kim Cương", goc: 180, tyLe: 1 },
+          { ten: "88.888 Kim Cương", goc: 225, tyLe: 1 },
+          { ten: "55.555 Kim Cương", goc: 270, tyLe: 1 },
+          { ten: "3.333 Kim Cương", goc: 315, tyLe: 1 },
+        ],
+      };
+
+      // 2. BIẾN TOÀN CỤC
+      let soDu = 500000;
+      let soDuKC = 0;
+      let dataTam = {};
+      let tongGocQuay = 0;
+      let dangQuay = false;
+      let isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+      let currentUser = localStorage.getItem("username") || "";
+
+      function capNhatGiaoDien() {
+        document.getElementById("soDuHienTai").innerText =
+          soDu.toLocaleString() + "đ";
+        if (document.getElementById("so-du-vq"))
+          document.getElementById("so-du-vq").innerText =
+            soDu.toLocaleString() + "đ";
+        document.getElementById("soDuKimCuong").innerText =
+          soDuKC.toLocaleString();
+        const userNav = document.getElementById("user-nav");
+        const moneyNav = document.getElementById("money-nav");
+        if (isLoggedIn) {
+          userNav.innerHTML = `Chào, <b style="color:#ffcc00">${currentUser}</b> | <a href="javascript:void(0)" onclick="dangXuat()">Đăng xuất</a>`;
+          moneyNav.style.display = "flex";
+          if (document.getElementById("display-name"))
+            document.getElementById("display-name").innerText = currentUser;
+        } else {
+          userNav.innerHTML = `<a href="javascript:void(0)" onclick="moModalAuth('dangky')">Đăng ký</a> | <a href="javascript:void(0)" onclick="moModalAuth('dangnhap')">Đăng nhập</a>`;
+          moneyNav.style.display = "none";
+        }
+      }
+
+      // 3. HÀM MUA ACC / VÒNG QUAY
+      function moXacNhan(loai, gia, ten, idGame, gmail, pass, anh) {
+        if (!isLoggedIn) {
+          alert("BẠN CẦN ĐĂNG NHẬP!");
+          moModalAuth("dangnhap");
+          return;
+        }
+        if (soDu < gia) {
+          alert("Bạn không đủ tiền!");
+          return;
+        }
+        dataTam = {
+          loai,
+          gia,
+          ten: ten.trim(),
+          idGame: idGame || "",
+          gmail: gmail || "",
+          pass: pass || "",
+          anh: anh || "",
+          prime: "Không",
+          rank: "Không",
+        };
+        document.getElementById("msg-xacnhan").innerHTML = `Xác nhận mua: <b>${
+          dataTam.ten
+        }</b><br>Giá: <b style="color:#ffcc00">${gia.toLocaleString()}đ</b>`;
+        document.getElementById("modalXacNhan").style.display = "block";
+      }
+
+      const KHO_ACC = {
+        150000: [
+          {
+            ten: "NguyenHieu",
+            id: "3036001346",
+            user: "vip_cao_1@gmail.com",
+            pass: "huy7388",
+            anh: "https://365png.io.vn/upload/product/1764795014-bandicam-2025-11-28-21-06-08-463-jsqbqfdlqb.jpg",
+            loai: "cao",
+            prime: "Bạch Kim",
+            rank: "Huyền Thoại",
+          },
+          {
+            ten: "Yeuemnhiulam",
+            id: "303600245",
+            user: "trung_1@gmail.com",
+            pass: "huy123",
+            anh: "https://365png.io.vn/upload/product/1758452950-bandicam-2025-09-21-11-29-37-754-rwgooxtpht.jpg",
+            loai: "thap",
+            prime: "Đồng",
+            rank: "Kim Cương",
+          },
+        ],
+        200000: [
+          {
+            ten: "Siêu Phẩm 200k",
+            id: "400001",
+            user: "super_vip@gmail.com",
+            pass: "admin123",
+            anh: "https://365png.io.vn/upload/product/1760809666-bandicam-2025-10-17-22-35-36-198-urckewgngu.jpg",
+            loai: "cao",
+            prime: "Vàng",
+            rank: "Thách Đấu",
+          },
+        ],
+      };
+
+      function muaAccRandom(gia) {
+        if (!isLoggedIn) {
+          alert("BẠN CẦN ĐĂNG NHẬP!");
+          moModalAuth("dangnhap");
+          return;
+        }
+        if (soDu < gia) {
+          alert("Bạn không đủ tiền!");
+          return;
+        }
+        const ds = KHO_ACC[gia.toString()];
+        if (!ds) return;
+        let tyLe = Math.random() * 100;
+        let accDuocChon;
+        let cao = ds.filter((a) => a.loai === "cao"),
+          thap = ds.filter((a) => a.loai === "thap");
+        if (tyLe <= 20 && cao.length > 0)
+          accDuocChon = cao[Math.floor(Math.random() * cao.length)];
+        else
+          accDuocChon =
+            thap.length > 0
+              ? thap[Math.floor(Math.random() * thap.length)]
+              : ds[0];
+        dataTam = {
+          loai: "acc",
+          gia,
+          ten: accDuocChon.ten,
+          idGame: accDuocChon.id,
+          gmail: accDuocChon.user,
+          pass: accDuocChon.pass,
+          anh: accDuocChon.anh,
+          prime: accDuocChon.prime || "Không",
+          rank: accDuocChon.rank || "Không",
+        };
+        document.getElementById(
+          "msg-xacnhan"
+        ).innerHTML = `Xác nhận mua <b>Gói Random ${gia.toLocaleString()}đ</b>`;
+        document.getElementById("modalXacNhan").style.display = "block";
+      }
+
+      // 4. XỬ LÝ NẠP THẺ (ĐÃ SỬA LỖI)
+      function moBangNapThe() {
+        document.getElementById("modalNapThe").style.display = "block";
+      }
+
+      function dongModal() {
+        document.getElementById("modalNapThe").style.display = "none";
+      }
+
+      function guiThe() {
+        const loaiThe = document.getElementById("loaiThe").value;
+        const mg = document.getElementById("menhGia").value;
+        const ma = document.getElementById("maThe").value;
+        const seri = document.getElementById("seri").value;
+
+        if (!ma || !seri) {
+          alert("Vui lòng nhập đầy đủ mã thẻ và seri!");
+          return;
+        }
+
+        // Giả lập nạp thành công
+        soDu += parseInt(mg);
+        capNhatGiaoDien();
+        dongModal();
+
+        const p = document.getElementById("success-popup");
+        document.getElementById(
+          "popup-text"
+        ).innerHTML = `Bạn vừa nạp thẻ <b>${loaiThe}</b> mệnh giá <b>${parseInt(
+          mg
+        ).toLocaleString()}đ</b> thành công!`;
+        p.classList.add("show");
+        setTimeout(() => p.classList.remove("show"), 3500);
+
+        // Xóa trắng input cho lần sau
+        document.getElementById("maThe").value = "";
+        document.getElementById("seri").value = "";
+      }
+
+      // 5. NÚT ĐỒNG Ý MUA
+      document.getElementById("btn-dong-y").onclick = function () {
+        document.getElementById("modalXacNhan").style.display = "none";
+        if (dataTam.loai === "vongquay") {
+          document.getElementById("vq-ten").innerText = dataTam.ten;
+          document.getElementById("vq-gia").innerText =
+            dataTam.gia.toLocaleString() + "đ";
+          document.getElementById("vong-quay-img").src = dataTam.anh;
+          document.getElementById("modalVongQuay").style.display = "block";
+        } else {
+          soDu -= dataTam.gia;
+          capNhatGiaoDien();
+          document.getElementById("res-ten").innerText = dataTam.ten;
+          document.getElementById("res-id").innerText = dataTam.idGame;
+          document.getElementById("res-prime").innerText = dataTam.prime;
+          document.getElementById("res-rank").innerText = dataTam.rank;
+          document.getElementById("res-gmail").innerText = dataTam.gmail;
+          document.getElementById("res-pass").innerText = dataTam.pass;
+          document.getElementById("res-anh").src = dataTam.anh;
+          document.getElementById("modalKetQua").style.display = "block";
+        }
+      };
+
+      // 6. VÒNG QUAY
+      function batDauQuay() {
+        if (dangQuay || soDu < dataTam.gia) return;
+        dangQuay = true;
+        const ds =
+          cấuHìnhVòngQuay[dataTam.ten] ||
+          cấuHìnhVòngQuay["VÒNG QUAY GIÁNG SINH"];
+        let tui = [];
+        ds.forEach((q) => {
+          for (let i = 0; i < q.tyLe; i++) tui.push(q);
+        });
+        const quà = tui[Math.floor(Math.random() * tui.length)];
+        tongGocQuay += 3600 + (360 - (tongGocQuay % 360)) + (360 - quà.goc);
+        document.getElementById(
+          "vong-quay-img"
+        ).style.transform = `rotate(${tongGocQuay}deg)`;
+        setTimeout(() => {
+          dangQuay = false;
+          soDu -= dataTam.gia;
+          if (quà.ten.includes("Kim Cương"))
+            soDuKC += parseInt(quà.ten.replace(/[^0-9]/g, "")) || 0;
+          capNhatGiaoDien();
+          document.getElementById("toast-qua-text").innerText =
+            "Bạn trúng: " + quà.ten;
+          document.getElementById("toast-thong-bao").classList.add("show");
+          setTimeout(
+            () =>
+              document
+                .getElementById("toast-thong-bao")
+                .classList.remove("show"),
+            4000
+          );
+        }, 4000);
+      }
+
+      // 7. CÁC HÀM CƠ BẢN
+      function moModalAuth(mode) {
+        document.getElementById("modalAuth").style.display = "block";
+      }
+      function dongModalAuth() {
+        document.getElementById("modalAuth").style.display = "none";
+      }
+      function thucHienAuth() {
+        isLoggedIn = true;
+        currentUser = document.getElementById("auth-user").value || "Khách";
+        localStorage.setItem("isLoggedIn", "true");
+        localStorage.setItem("username", currentUser);
+        dongModalAuth();
+        capNhatGiaoDien();
+      }
+      function dangXuat() {
+        localStorage.clear();
+        location.reload();
+      }
+      function dongModalXacNhan() {
+        document.getElementById("modalXacNhan").style.display = "none";
+      }
+      function dongModalKetQua() {
+        document.getElementById("modalKetQua").style.display = "none";
+      }
+      function dongVongQuay() {
+        document.getElementById("modalVongQuay").style.display = "none";
+      }
+
+      capNhatGiaoDien();
+    </script>
+  </body>
+</html>
